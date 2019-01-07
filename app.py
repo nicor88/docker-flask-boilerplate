@@ -9,7 +9,7 @@ logger = logging.getLogger('flask-app')
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET', 'POST'])
 def main_route():
     try:
         payload = {'output': 'Hello World from Flask'}

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 if [ -z "$AWS_ACCOUNT" ]; then
 	echo "Please set the AWS_ACCOUNT environment variable"
 	exit 1
@@ -11,8 +10,7 @@ if [ -z "$AWS_DEFAULT_REGION" ]; then
 	exit 1
 fi
 
-
-IMAGE_NAME=docker-flask-boilerplate
+IMAGE_NAME=$1
 
 echo "Building image: $IMAGE_NAME:latest"
 
