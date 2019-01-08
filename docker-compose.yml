@@ -1,10 +1,29 @@
 version: '3'
 services:
+  postgres:
+    image: postgres:11
+    environment:
+      - POSTGRES_USER=flask
+      - POSTGRES_PASSWORD=flask
+      - POSTGRES_DB=dev
+    volumes:
+      - ./init_db:/docker-entrypoint-initdb.d
+      # - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
   flask:
     image: docker-flask-boilerplate:latest
     restart: always
     build: .
     environment:
       - STAGE=dev
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=dev
+      - POSTGRES_USER=flask
+      - POSTGRES_PASSWORD=flask
     ports:
       - 8000:8000
+    depends_on:
+      - postgres
